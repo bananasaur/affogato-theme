@@ -30,7 +30,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('scripts', function() {
-	return gulp.src('src/js/**/*.js')
+	return gulp.src('src/js/*.js')
 		.pipe(concat('scripts.js'))
 		.pipe(gulp.dest('assets/js'))
 		.pipe(rename('scripts.min.js'))
@@ -41,6 +41,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('watch', function() {
+	// do i really want to concat every js file into one scripts file?
 	gulp.watch('src/js/**/*.js', ['scripts']);
 	gulp.watch('src/less/**/*.less', ['less']);
 });

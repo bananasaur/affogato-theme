@@ -34,8 +34,10 @@
     {{! Ghost outputs important scripts and data with this tag }}
     {{ghost_foot}}
 
-    {{! The main JavaScript file for Casper }}
-    <script type="text/javascript" src="{{asset "js/scripts.min.js"}}"></script>
+    {{! Scripts for the theme }}
+    <script type="text/javascript" src="{{asset "js/vendor/jquery/dist/jquery.min.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/vendor/fitvids/jquery.fitvids.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/scripts.js"}}"></script>
 
 </body>
 </html>
