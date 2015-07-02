@@ -21,7 +21,7 @@ gulp.task('lint', function() {
 gulp.task('less', function() {
 	// need to minify css
 	// need to use autoprefix
-	return gulp.src('src/less/**/*.less')
+	return gulp.src('src/less/style-custom.less')
 		.pipe(changed('assets/css'))
 		.pipe(less())
 		.pipe(gulp.dest('assets/css'))
