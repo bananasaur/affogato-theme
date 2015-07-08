@@ -22,9 +22,9 @@
 {{!CUSTOM }}
 <nav class="pagination clearfix" role="navigation">
   {{#if prev}}
-    <a class="newer-posts" href="{{page_url prev}}"><i>&larr;</i><span>Newer</span></a>
+    <a class="newer-posts button--slide" href="{{page_url prev}}"><i class="icon button__icon">&larr;</i><span>Newer</span></a>
   {{/if}}
   {{#if next}}
-    <a class="older-posts" href="{{page_url next}}"><i>&rarr;</i><span>Older</span></a>
+    <a class="older-posts button--slide button--slide-up" href="{{page_url next}}"><i class="icon button__icon">&rarr;</i><span>Older</span></a>
   {{/if}}
 </nav>

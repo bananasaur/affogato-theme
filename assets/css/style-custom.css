@@ -728,6 +728,19 @@ margin on the iframe, cause it breaks stuff. */
 .container-content {
   margin: 60px 12% 30px;
 }
+.icon {
+  font-size: inherit;
+  font-weight: normal;
+  font-style: normal;
+  line-height: inherit;
+  position: relative;
+  display: inline-block;
+  transform: translate(0, 0);
+  vertical-align: middle;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 /* Mixins */
 /* Clears shit */
 .clearfix:before,
@@ -833,13 +846,13 @@ header.container .blog-cover {
   position: absolute;
   display: block;
   background: #fff;
-  height: 2.5%;
+  height: 1rem;
   width: 100%;
   bottom: 0;
   z-index: 1;
-  -webkit-transform: translateY(10px);
-  -ms-transform: translateY(10px);
-  transform: translateY(10px);
+  -webkit-transform: translateY(1rem);
+  -ms-transform: translateY(1rem);
+  transform: translateY(1rem);
   transition-property: transform;
   transition-duration: 0.2s;
   transition-style: ease;
@@ -1581,7 +1594,7 @@ body:not(.post-template) .post-title {
 .pagination {
   position: relative;
   width: 100%;
-  font-family: "Lato", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1.7rem;
   color: #9EABB3;
   text-align: center;
@@ -1593,24 +1606,198 @@ body:not(.post-template) .post-title {
   width: 50%;
   color: #9EABB3;
   transition: all 0.2s ease;
+  /* Push the previous/next links out to the left/right */
 }
-/* Push the previous/next links out to the left/right */
-.older-posts,
-.newer-posts {
-  float: left;
+.pagination a.older-posts,
+.pagination a.newer-posts {
   display: block;
-  padding: 30px 15px;
   text-decoration: none;
 }
-.page-number {
-  display: inline-block;
-  padding: 2px 0;
-  min-width: 100px;
+.pagination a.older-posts {
+  float: right;
 }
-.older-posts:hover,
-.newer-posts:hover {
-  color: #889093;
-  border-color: #98a0a4;
+.pagination a.newer-posts {
+  float: left;
+}
+@-webkit-keyframes anim-naira-1 {
+  50% {
+    -webkit-transform: translate3d(0, -50%, 0) rotate3d(0, 0, 1, -10deg);
+    transform: translate3d(0, -50%, 0) rotate3d(0, 0, 1, -10deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+    transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+  }
+}
+@keyframes anim-naira-1 {
+  50% {
+    -webkit-transform: translate3d(0, -50%, 0) rotate3d(0, 0, 1, -10deg);
+    transform: translate3d(0, -50%, 0) rotate3d(0, 0, 1, -10deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+    transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+  }
+}
+@-webkit-keyframes anim-naira-2 {
+  50% {
+    -webkit-transform: translate3d(0, 50%, 0) rotate3d(0, 0, 1, 10deg);
+    transform: translate3d(0, 50%, 0) rotate3d(0, 0, 1, 10deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+    transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+  }
+}
+@keyframes anim-naira-2 {
+  50% {
+    -webkit-transform: translate3d(0, 50%, 0) rotate3d(0, 0, 1, 10deg);
+    transform: translate3d(0, 50%, 0) rotate3d(0, 0, 1, 10deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+    transform: translate3d(0, 0%, 0) rotate3d(0, 0, 1, 0deg);
+  }
+}
+.button--slide {
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  transition-property: background-color 0.3s;
+  transition-duration: 1s;
+  transition-style: ease;
+  transition-delay: 0s;
+  -webkit-transition-property: background-color 0.3s;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-style: ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition-property: background-color 0.3s;
+  -moz-transition-duration: 1s;
+  -moz-transition-style: ease;
+  -moz-transition-delay: 0s;
+  -o-transition-property: background-color 0.3s;
+  -o-transition-duration: 1s;
+  -o-transition-style: ease;
+  -o-transition-delay: 0s;
+}
+.button--slide:before {
+  content: '';
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: #191e23;
+  top: -50%;
+  z-index: -1;
+  -webkit-transform: translate3d(0, -200%, 0) rotate3d(0, 0, 1, -10deg);
+  -moz-transform: translate3d(0, -200%, 0) rotate3d(0, 0, 1, -10deg);
+  -ms-transform: translate3d(0, -200%, 0) rotate3d(0, 0, 1, -10deg);
+  -o-transform: translate3d(0, -200%, 0) rotate3d(0, 0, 1, -10deg);
+}
+.button--slide.button--slide-up:before {
+  -webkit-transform: translate3d(0, 200%, 0) rotate3d(0, 0, 1, 10deg);
+  -moz-transform: translate3d(0, 200%, 0) rotate3d(0, 0, 1, 10deg);
+  -ms-transform: translate3d(0, 200%, 0) rotate3d(0, 0, 1, 10deg);
+  -o-transform: translate3d(0, 200%, 0) rotate3d(0, 0, 1, 10deg);
+}
+.button--slide.button--slide-up .button__icon {
+  -webkit-transform: translate3d(0, 100%, 0);
+  -moz-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  -o-transform: translate3d(0, 100%, 0);
+}
+.button--slide span {
+  display: block;
+}
+.button--slide .button__icon {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  color: #fff;
+  text-align: center;
+  -webkit-transform: translate3d(0, -100%, 0);
+  -moz-transform: translate3d(0, -100%, 0);
+  -ms-transform: translate3d(0, -100%, 0);
+  -o-transform: translate3d(0, -100%, 0);
+}
+.button--slide span,
+.button--slide .button__icon {
+  padding: 1em 2em;
+  transition-property: transform 0.3s;
+  transition-duration: 1s;
+  transition-style: ease;
+  transition-delay: 0s;
+  -webkit-transition-property: transform 0.3s;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-style: ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition-property: transform 0.3s;
+  -moz-transition-duration: 1s;
+  -moz-transition-style: ease;
+  -moz-transition-delay: 0s;
+  -o-transition-property: transform 0.3s;
+  -o-transition-duration: 1s;
+  -o-transition-style: ease;
+  -o-transition-delay: 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--slide:hover {
+  background-color: #191e23;
+  transition-property: background-color 0s 0.3s;
+  transition-duration: 1s;
+  transition-style: ease;
+  transition-delay: 0s;
+  -webkit-transition-property: background-color 0s 0.3s;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-style: ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition-property: background-color 0s 0.3s;
+  -moz-transition-duration: 1s;
+  -moz-transition-style: ease;
+  -moz-transition-delay: 0s;
+  -o-transition-property: background-color 0s 0.3s;
+  -o-transition-duration: 1s;
+  -o-transition-style: ease;
+  -o-transition-delay: 0s;
+}
+.button--slide:hover:before {
+  -webkit-animation: anim-naira-1 0.2s forwards ease-in;
+  animation: anim-naira-1 0.2s forwards ease-in;
+}
+.button--slide:hover.button--slide-up > span {
+  -webkit-transform: translate3d(0, 100%, 0);
+  -moz-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  -o-transform: translate3d(0, 100%, 0);
+}
+.button--slide:hover.button--slide-up:before {
+  -webkit-animation: anim-naira-2 0.3s forwards ease-in;
+  animation: anim-naira-2 0.3s forwards ease-in;
+}
+.button--slide:hover .button__icon {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+}
+.button--slide:hover > span {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
+  -moz-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  -o-transform: translate3d(0, 100%, 0);
 }
 /* On page2+ make all the headers smaller */
 .archive-template .main-header {
