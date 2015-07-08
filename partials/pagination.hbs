@@ -1,9 +1,30 @@
-<nav class="pagination" role="navigation">
-    {{#if prev}}
-        <a class="newer-posts" href="{{page_url prev}}">&larr; Newer Posts</a>
-    {{/if}}
-    <span class="page-number">Page {{page}} of {{pages}}</span>
-    {{#if next}}
-        <a class="older-posts" href="{{page_url next}}">Older Posts &rarr;</a>
-    {{/if}}
+{{! ORIGINAL }}
+{{!-- <nav class="pagination" role="navigation">
+  {{#if prev}}
+    <a class="newer-posts" href="{{page_url prev}}">&larr; Newer</a>
+  {{/if}}
+  {{#if next}}
+    <a class="older-posts" href="{{page_url next}}">Older &rarr;</a>
+  {{/if}}
+</nav> --}}
+
+
+{{! USING NAIRA }}
+{{!-- <nav class="pagination" role="navigation">
+  {{#if prev}}
+    <a class="newer-posts button button--naira button--border-thick button--text-thick button--text-upper button--size-s" href="{{page_url prev}}"><i class="button__icon">&larr;</i><span>Newer</span></a>
+  {{/if}}
+  {{#if next}}
+    <a class="older-posts button button--naira button--border-thick button--text-thick button--text-upper button--size-s button--naira-up" href="{{page_url next}}"><i class="button__icon">&rarr;</i><span>Older</span></a>
+  {{/if}}
+</nav> --}}
+
+{{!CUSTOM }}
+<nav class="pagination clearfix" role="navigation">
+  {{#if prev}}
+    <a class="newer-posts" href="{{page_url prev}}"><i>&larr;</i><span>Newer</span></a>
+  {{/if}}
+  {{#if next}}
+    <a class="older-posts" href="{{page_url next}}"><i>&rarr;</i><span>Older</span></a>
+  {{/if}}
 </nav>

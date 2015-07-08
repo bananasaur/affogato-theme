@@ -10,6 +10,8 @@
     "tests"
   ],
   "dependencies": {
-    "fitvids": "~1.1.0"
+    "fitvids": "~1.1.0",
+    "typed.js": "*",
+    "gray": "~1.4.2"
   }
 }
