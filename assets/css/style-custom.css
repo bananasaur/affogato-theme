@@ -1750,8 +1750,6 @@ body:not(.post-template) .post-title {
   -o-transition-duration: 0.3s;
   -o-transition-style: cubic-bezier(0.75, 0, 0.125, 1);
   -o-transition-delay: 0s;
-  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
-  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 }
 .button--slide:hover {
   background-color: #191e23;
