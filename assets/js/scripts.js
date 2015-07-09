@@ -6,6 +6,8 @@
 (function ($, sr, undefined) {
     "use strict";
 
+    var s = skrollr.init();
+
     var $document = $(document),
 
         // debouncing function from John Hann
