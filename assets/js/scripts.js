@@ -1,12 +1,10 @@
 /**
- * Main JS file for Casper behaviours
+ * Main JS file
  */
 
 /* globals jQuery, document */
 (function ($, sr, undefined) {
     "use strict";
-
-    var s = skrollr.init();
 
     var $document = $(document),
 
@@ -35,6 +33,13 @@
         };
 
     $document.ready(function () {
+        var $target = $("[data-target]");
+        var $active = $($("[data-target]").attr("data-target"));
+        
+        $target.click(function() {
+            var $active = $($(this).attr("data-target"));
+            $active.toggleClass("hide");
+        });
 
         var $postContent = $(".post-content");
         $postContent.fitVids();

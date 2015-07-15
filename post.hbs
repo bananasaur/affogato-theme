@@ -6,75 +6,242 @@
 {{! Everything inside the #post tags pulls data from the post }}
 {{#post}}
 
-<header class="main-header post-head {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
-  <nav class="main-nav {{#if image}}overlay{{/if}} clearfix">
-    <a class="back-button icon-arrow-left" href="{{@blog.url}}">Home</a>
-    <a class="subscribe-button icon-feed" href="{{@blog.url}}/rss/">Subscribe</a>
-  </nav>
-</header>
 
-<main class="content" role="main">
-
-  <article class="{{post_class}}">
-
-    <header class="post-header">
+<div id="post-container" class="post-container {{#if image}}intro-effect-side{{/if}}">
+  <header class="header">
+    {{#if image}}
+    <div class="bg-img">
+      <img src="{{image}}" alt="Background Image" />
+    </div>
+    {{/if}}
+    <div class="title-container">
       <h1 class="post-title">{{title}}</h1>
-      <section class="post-meta">
-        <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time> {{tags prefix=" on "}}
+      <p>
+        Published on <time datetime="{{date format='YYYY-MM-DD'}}"><strong>{{date format="DD MMMM YYYY"}}</strong></time> 
+        {{#if tags}}
+          in
+          {{#foreach tags}}
+            <a href="{{url}}"><strong class="post-tag">{{name}}</strong></a>
+            {{^if @last}}
+                ,
+            {{/if}}
+          {{/foreach}}
+        {{/if}}
+        <br />
+        <a href="{{@blog.url}}" class="back-button icon-navigate_before">Home</a>
+      </p>
+    </div>
+  </header>
+  {{#if image}}<button class="trigger"><span>Trigger</span></button>{{/if}}
+  <main class="content" role="main">
+
+    <article class="{{post_class}}">
+      <section class="post-content">
+        {{content}}
       </section>
-    </header>
+      <div class="button-wrapper clearfix">
+        <a class="button button--follow" href="{{@blog.url}}/rss"><i class="icon icon-feed"></i><span>Follow</span></a>
+        <button class="button button--share" data-target="#share"><i class="icon icon-share"></i><span>Share</span></button>
 
-    <section class="post-content">
-      {{content}}
-    </section>
-
-    <footer class="post-footer">
-
-    {{! Everything inside the #author tags pulls data from the author }}
-    {{#author}}
-
-      {{#if image}}
+        <div id="share" class="clearfix hide">
+          <a class="button" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+          onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"><i class="icon icon-facebook"></i></a>
+          <a class="button" href="https://plus.google.com/share?url={{url absolute="true"}}"
+          onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="icon icon-google-plus"></i></a>
+          <a class="button" href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="icon icon-twitter"></i></a>
+          <a class="button" href="https://www.linkedin.com/shareArticle?mini=true&url={{url absolute="true"}}&title={{encode title}}&source={{encode "Eric Lea's Blog"}}"
+          onclick="window.open(this.href, 'linkedin-share', 'width=550,height=235');return false;"><i class="icon icon-linkedin"></i></a>
+        </div>
+      </div>
+      {{#author}}
+      {{!-- {{#if image}}
       <figure class="author-image">
         <a class="img" href="{{url}}" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></a>
       </figure>
-      {{/if}}
-
-      <section class="author">
-        <h4><a href="{{url}}">{{name}}</a></h4>
-
-        {{#if bio}}
-          <p>{{bio}}</p>
-        {{else}}
-          <p>Read <a href="{{url}}">more posts</a> by this author.</p>
+      {{/if}} --}}
+      <section id="author" class="author">
+        {{#if image}}
+        <figure class="author-card-image">
+          <a class="img" href="{{url}}">
+            <img src="{{image}}" />
+            <span class="hidden">{{name}}'s Picture</span>
+          </a>
+        </figure>
         {{/if}}
-        <div class="author-meta">
-          {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
-          {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
+
+        <div class="author-card-content">
+          <h4><a href="{{url}}">{{name}}</a></h4>
+          {{#if bio}}
+          <p>{{bio}}</p>
+          {{else}}
+          <p>Read <a href="{{url}}">more posts</a> by this author.</p>
+          {{/if}}
+          <div class="author-meta">
+            {{#if location}}<span class="author-location icon-map">{{location}}</span>{{/if}}
+            {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
+          </div>
         </div>
       </section>
+      {{/author}}
+    </article>
+  </main>
+  {{! NEXT POST PREVIEW}}
+  {{#prev_post}}
+  <footer class="post-footer{{^if image}} no-img">{{else}}">
+    <div class="post-footer-img" style="background: url({{image}}) no-repeat; background-size: cover; background-position: center center;"></div>
+    {{/if}}
+    <div class="post-footer-text">
+      <a class="prev-link" title="title" href="{{url}}">Read Next</a>
+      <h2>{{title}}</h2>
+      <h3>{{excerpt words="16"}}...</h3>
+    </div>
+  </footer>
+  {{/prev_post}}
+</div>
 
-    {{/author}}
+{{#if image}}
+<script>
+  (function() {
 
-      <section class="share">
-        <h4>Share this post</h4>
-        <a class="icon-twitter" href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
-          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-          <span class="hidden">Twitter</span>
-        </a>
-        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
-          onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-          <span class="hidden">Facebook</span>
-        </a>
-        <a class="icon-google-plus" href="https://plus.google.com/share?url={{url absolute="true"}}"
-          onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-          <span class="hidden">Google+</span>
-        </a>
-      </section>
+    // detect if IE : from http://stackoverflow.com/a/16657946    
+    var ie = (function(){
+      var undef,rv = -1; // Return value assumes failure.
+      var ua = window.navigator.userAgent;
+      var msie = ua.indexOf('MSIE ');
+      var trident = ua.indexOf('Trident/');
 
-    </footer>
+      if (msie > 0) {
+        // IE 10 or older => return version number
+        rv = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+      } else if (trident > 0) {
+        // IE 11 (or newer) => return version number
+        var rvNum = ua.indexOf('rv:');
+        rv = parseInt(ua.substring(rvNum + 3, ua.indexOf('.', rvNum)), 10);
+      }
 
-  </article>
+      return ((rv > -1) ? rv : undef);
+    }());
 
-</main>
 
+    // disable/enable scroll (mousewheel and keys) from http://stackoverflow.com/a/4770179          
+    // left: 37, up: 38, right: 39, down: 40,
+    // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+    var keys = [32, 37, 38, 39, 40], wheelIter = 0;
+
+    function preventDefault(e) {
+      e = e || window.event;
+      if (e.preventDefault)
+      e.preventDefault();
+      e.returnValue = false;  
+    }
+
+    function keydown(e) {
+      for (var i = keys.length; i--;) {
+        if (e.keyCode === keys[i]) {
+          preventDefault(e);
+          return;
+        }
+      }
+    }
+
+    function touchmove(e) {
+      preventDefault(e);
+    }
+
+    function wheel(e) {
+      // for IE 
+      //if( ie ) {
+        //preventDefault(e);
+      //}
+    }
+
+    function disable_scroll() {
+      window.onmousewheel = document.onmousewheel = wheel;
+      document.onkeydown = keydown;
+      document.body.ontouchmove = touchmove;
+    }
+
+    function enable_scroll() {
+      window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;  
+    }
+
+    var docElem = window.document.documentElement,
+      scrollVal,
+      isRevealed, 
+      noscroll, 
+      isAnimating,
+      container = document.getElementById( 'post-container' ),
+      trigger = container.querySelector( 'button.trigger' );
+
+    function scrollY() {
+      return window.pageYOffset || docElem.scrollTop;
+    }
+    
+    function scrollPage() {
+      scrollVal = scrollY();
+      
+      if( noscroll && !ie ) {
+        if( scrollVal < 0 ) return false;
+        // keep it that way
+        window.scrollTo( 0, 0 );
+      }
+
+      if( classie.has( container, 'notrans' ) ) {
+        classie.remove( container, 'notrans' );
+        return false;
+      }
+
+      if( isAnimating ) {
+        return false;
+      }
+      
+      if( scrollVal <= 0 && isRevealed ) {
+        toggle(0);
+      }
+      else if( scrollVal > 0 && !isRevealed ){
+        toggle(1);
+      }
+    }
+
+    function toggle( reveal ) {
+      isAnimating = true;
+      
+      if( reveal ) {
+        classie.add( container, 'modify' );
+      }
+      else {
+        noscroll = true;
+        disable_scroll();
+        classie.remove( container, 'modify' );
+      }
+
+      // simulating the end of the transition:
+      setTimeout( function() {
+        isRevealed = !isRevealed;
+        isAnimating = false;
+        if( reveal ) {
+          noscroll = false;
+          enable_scroll();
+        }
+      }, 600 );
+    }
+
+    // refreshing the page...
+    var pageScroll = scrollY();
+    noscroll = pageScroll === 0;
+    
+    disable_scroll();
+    
+    if( pageScroll ) {
+      isRevealed = true;
+      classie.add( container, 'notrans' );
+      classie.add( container, 'modify' );
+    }
+    
+    window.addEventListener( 'scroll', scrollPage );
+    trigger.addEventListener( 'click', function() { toggle( 'reveal' ); } );
+  })();
+</script>
+{{/if}}
 {{/post}}

@@ -3,18 +3,17 @@
 
 <header class="container clearfix">
   <h1>
-    <span class="title">{{@blog.description}}</span>
+    <span class="title">{{@blog.title}}</span>
     <hr>
   </h1>
-  {{#if @blog.cover}}
-  {{!-- <div class="blog-cover" style="
-    background: url({{@blog.cover}}) no-repeat;
-  " data-anchor-target="body" data-bottom-top="background-position: 0% 0%" data--400-center-bottom="background-position: 10% 0"></div> --}}
+{{!--   {{#if @blog.cover}}
   <div class="blog-cover" style="
     background: url({{@blog.cover}}) no-repeat;
-    background-size: cover;
-  " data-anchor-target="body" data-bottom-top="top: 30%" data--600-center-bottom="top: -30%"></div>
-  {{/if}}
+  "></div>
+  {{/if}} --}}
+  <article class="header--description">
+    <h3>a blog by <a class="button--link" href="http://ericlea.ninja" title="Visit website" data-text="Eric Lea"><span>Eric Lea</span></a></h3>
+  </article>
 </header>
 
 {{! The main content area on the homepage }}
@@ -23,7 +22,7 @@
   <div class="clearfix main">
     {{!-- <hr class="vertical-bar"> --}}
     <h2 class="main--header">Latest</h2>
-  {{! The tag below includes the post loop - partials/loop.hbs }}
+    {{! The tag below includes the post loop - partials/loop.hbs }}
     {{> "loop"}}
   </div>
 
