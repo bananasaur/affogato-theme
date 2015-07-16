@@ -12,6 +12,5 @@
   "dependencies": {
     "fitvids": "~1.1.0",
     "gray": "~1.4.2",
-    "classie": "~1.0.1"
   }
 }

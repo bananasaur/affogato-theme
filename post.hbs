@@ -55,11 +55,6 @@
         </div>
       </div>
       {{#author}}
-      {{!-- {{#if image}}
-      <figure class="author-image">
-        <a class="img" href="{{url}}" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></a>
-      </figure>
-      {{/if}} --}}
       <section id="author" class="author">
         {{#if image}}
         <figure class="author-card-image">
@@ -187,8 +182,8 @@
         window.scrollTo( 0, 0 );
       }
 
-      if( classie.has( container, 'notrans' ) ) {
-        classie.remove( container, 'notrans' );
+      if ($(container).hasClass('notrans')) {
+        $(container).removeClass('notrans');
         return false;
       }
 
@@ -208,12 +203,12 @@
       isAnimating = true;
       
       if( reveal ) {
-        classie.add( container, 'modify' );
+        $(container).addClass('modify');
       }
       else {
         noscroll = true;
         disable_scroll();
-        classie.remove( container, 'modify' );
+        $(container).removeClass('modify');
       }
 
       // simulating the end of the transition:
@@ -235,8 +230,8 @@
     
     if( pageScroll ) {
       isRevealed = true;
-      classie.add( container, 'notrans' );
-      classie.add( container, 'modify' );
+      $(container).addClass('notrans');
+      $(container).addClass('modify');
     }
     
     window.addEventListener( 'scroll', scrollPage );
