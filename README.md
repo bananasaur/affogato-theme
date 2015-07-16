@@ -1,3 +1,5 @@
-# Affogato - A Minimalist Black and White Ghost Theme
+# Affogato
+
+A minimalist black and white theme for [Ghost](http://ghost.org/).
 
 Currently being developed by Eric Lea.
