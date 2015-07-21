@@ -1,4 +1,6 @@
-node_modules/*
-assets/css/style-custom.css
 **/.DS_Store
+
+node_modules/*
 assets/vendor/*
+
+assets/css/style-custom.css
